@@ -8,7 +8,7 @@
 | ------ | ------ | ------ |
 | Задание 1 | * | 60 |
 | Задание 2 | * | 20 |
-| Задание 3 | # | 20 |
+| Задание 3 | * | 20 |
 
 знак "*" - задание выполнено; знак "#" - задание не выполнено;
 
@@ -48,6 +48,8 @@ Plane.
 
 - Написать скрипт, который будет выводить в консоль сообщение о том, что объект Sphere столкнулся с объектом Cube. При столкновении Cube должен менять свой цвет на зелёный, а при завершении столкновения обратно на красный.
 
+Представленный ниже скрипт доступен в [репозиитории](https://github.com/ArzuYoung/VR-AR_course_Lab1/blob/main/VR-AR_course_Lab1/Assets/CheckCollider.cs)
+
 ```c#
 
 public class CheckCollider : MonoBehaviour
@@ -86,6 +88,8 @@ public class CheckCollider : MonoBehaviour
 В качестве отработки навыков был создан эффект "взрыва" сферы при столкновении.
 
 ![alt text](ScreenShots/boom.gif)
+
+Представленный ниже скрипт доступен в [репозиитории](https://github.com/ArzuYoung/VR-AR_course_Lab1/blob/main/VR-AR_course_Lab1/Assets/DestroyObject.cs)
 
 ```c#
 using System.Collections;
@@ -140,9 +144,11 @@ public class DestroyObject : MonoBehaviour
 #### Что произойдёт с координатами объекта, если он перестанет быть дочерним?
 
 Будучи дочерним элемент разделяет поведение родительского элемента => их координаты связаны и при движении изменяются на одинаковые величины. На примере двух сфер: дочерний элемент также падает и разбивается
+
 ![alt text](ScreenShots/WithChildElement.gif)
 
 Когда элемент перестает быть дочерним его координаты самостоятельны и ни от каких других элементов не зависят. В этом примере шар перестает двигаться вместе с другой сферой
+
 ![alt text](ScreenShots/NoChildElement.gif)
 
 #### Создайте три различных примера работы компонента RigidBody
@@ -155,6 +161,43 @@ public class DestroyObject : MonoBehaviour
 
 - Отключены свойства Is Kinematic и Use Gravity => объект не подчиняется законам гравитации, но его может "толкнуть" другой объект и он будет двигаться:
 ![alt text](ScreenShots/NoIsKinematicUseGravity.gif)
+
+## Задание 3
+### Реализуйте на сцене генерацию n кубиков. Число n вводится пользователем после старта сцены.
+- В ходе выполнения задания было создано поле `inputField`, в которое пользователь вводит число, и после завершения редактирования изменяется количество кубов на экране на введенное пользователем.
+
+Представленный ниже скрипт доступен в [репозиитории](https://github.com/ArzuYoung/VR-AR_course_Lab1/blob/main/VR-AR_course_Lab1/Assets/Task3Script.cs)
+
+```c#
+
+using UnityEngine;
+using UnityEngine.UI;
+
+public class Task3Script : MonoBehaviour
+{
+    public GameObject cube;
+    public int count;
+    
+    void Start()
+    {
+        count = 0;
+    }
+
+    public void MakeObjects(string inputField){
+        count = int.Parse(inputField);
+        
+        for (int i = 0; i < count; ++i){
+            Instantiate(cube, new Vector3(-10 + i, 5, 0), cube.transform.rotation);
+        }
+    }
+
+}
+
+```
+
+![alt text](ScreenShots/pic3.1.PNG)
+
+![alt text](ScreenShots/pic3.2.PNG)
 
 ## Выводы
 
